@@ -81,5 +81,11 @@ describe('Select', () => {
       vm.countryVal.should.eql('fr')
     }).then(done, done)
   })
-})
 
+  it.skip('closes the menu when option is selected', (done) => {
+    menuUl.find('li:first').click()
+    vm.nextTick().then(() => {
+      menuUl.should.not.have.css('clip')
+    }).then(done, done)
+  })
+})

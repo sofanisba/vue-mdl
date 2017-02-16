@@ -18,7 +18,7 @@
         :for="id">
       <li class="mdl-menu__item"
           v-for="option in optionsObject"
-          @click="selectValue(option)"
+          @click="select(option, this)"
       >{{option.name}}</li>
     </ul>
   </div>
@@ -36,6 +36,13 @@ export default {
     selectValue ({value}) {
       /* setTimeout(() => this.$refs.menu.MaterialTextfield.updateClasses_(), 250) */
       this.$emit('input', value)
+    },
+    handleClick (e) {
+      this.$refs.menu.$el.MaterialMenu.handleItemClick_(e)
+    },
+    select ({value}, e) {
+      this.handleClick(e)
+      this.selectValue(value)
     },
     setName () {
       this.name = null
